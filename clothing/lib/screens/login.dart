@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -52,8 +54,37 @@ class LoginPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: <Widget>[
-                      inputFile(label: "Email"),
-                      inputFile(label: "Password", obscureText: true)
+                      TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Adresse E-mail',
+                    labelStyle: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigo),
+                    )
+                  ),
+                ),
+                SizedBox(height: 20,),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                      labelText: 'Mot de Passe',
+                      labelStyle: TextStyle(
+                          fontFamily: 'Montserrat',
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.indigo),
+                      )
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 5.0,),
                     ],
                   ),
                 ),
@@ -72,7 +103,8 @@ class LoginPage extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      //when to sign in
+                      onPressed: signIn,
                       color: Colors.indigo,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -118,34 +150,9 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  Future signIn() async {
+    
+  }
 }
 
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.indigo),
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.indigo))),
-      ),
-      SizedBox(
-        height: 10,
-      )
-    ],
-  );
-}

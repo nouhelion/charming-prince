@@ -1,8 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:clothing/screens/login.dart';
 
 class SignupPage extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +53,56 @@ class SignupPage extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
-                  inputFile(label: "Email"),
-                  inputFile(label: "Password", obscureText: true),
-                  inputFile(label: "Confirm Password ", obscureText: true),
+                  TextField(
+                controller: _emailController,
+                decoration: InputDecoration(
+                    labelText: 'E-mail',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigo),
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigo),
+                    )),
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                    labelText: 'Re-type Password',
+                    labelStyle: TextStyle(
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.indigo),
+                    )),
+                obscureText: true,
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              SizedBox(
+                height: 40,
+              ),
                 ],
               ),
               Container(
@@ -91,7 +141,7 @@ class SignupPage extends StatelessWidget {
                   Text(
                     " Login",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  )
+                  ),
                 ],
               )
             ],
@@ -100,34 +150,4 @@ class SignupPage extends StatelessWidget {
       ),
     );
   }
-}
-
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.indigo),
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.indigo))),
-      ),
-      SizedBox(
-        height: 10,
-      )
-    ],
-  );
 }
