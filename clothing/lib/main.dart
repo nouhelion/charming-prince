@@ -1,7 +1,8 @@
-// ignore_for_file: unnecessary_import, use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: unnecessary_import, use_key_in_widget_constructors, prefer_const_constructors, unused_import
 
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/login.dart';
 import 'package:clothing/screens/signup.dart';
@@ -20,7 +21,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: /* StreamBuilder<User?>(stream:FirebaseAuth.instance.authStateChanges(), builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Welcome();
+        } else {
+          return LoginPage();
+        }
+      }),*/
+      SafeArea(
         child: Container(
           // we will give media query height
           // double.infinity make it big as my parent allows

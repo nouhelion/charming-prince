@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, avoid_print, use_build_context_synchronously, unused_import
 
+import 'package:clothing/screens/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,17 +8,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LoginPage extends StatefulWidget {
-   
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-   final _emailController = TextEditingController();
-   final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -66,36 +73,36 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: <Widget>[
                       TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Adresse E-mail',
-                    labelStyle: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigo),
-                    )
-                  ),
-                ),
-                SizedBox(height: 20,),
-                TextField(
-                  controller: _passwordController,
-                  decoration: InputDecoration(
-                      labelText: 'Mot de Passe',
-                      labelStyle: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                            labelText: 'Adresse E-mail',
+                            labelStyle: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.indigo),
+                            )),
                       ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.indigo),
-                      )
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 5.0,),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                            labelText: 'Mot de Passe',
+                            labelStyle: TextStyle(
+                                fontFamily: 'Montserrat',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.indigo),
+                            )),
+                        obscureText: true,
+                      ),
+                      SizedBox(
+                        height: 5.0,
+                      ),
                     ],
                   ),
                 ),
@@ -163,9 +170,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future signIn() async {
-    await _auth.signInWithEmailAndPassword(
-            email: _emailController.text.trim(), 
-            password: _passwordController.text.trim(),);
+    final User? user = (await _auth.signInWithEmailAndPassword(
+            email: _emailController.text, password: _passwordController.text))
+        .user;
+    if (user != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Welcome()),
+      );
+    }
   }
 }
-
