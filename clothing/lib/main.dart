@@ -1,4 +1,6 @@
-import 'dart:ui';
+
+
+// ignore_for_file: use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/Signup/signup.dart';
@@ -56,7 +58,7 @@ class HomePage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/welcome.png")
+                    image: AssetImage("assets/images/welcome.png")
                   )
                 ),
               ),
