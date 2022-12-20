@@ -3,11 +3,20 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:clothing/login.dart';
-import 'package:clothing/signup.dart';
+import 'package:clothing/screens/login.dart';
+import 'package:clothing/screens/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
+    theme: ThemeData(
+      primarySwatch: Colors.indigo,
+    ),
     debugShowCheckedModeBanner: false,
     home: HomePage(),
   ));
@@ -44,7 +53,7 @@ class HomePage extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "BackSlash Flutter provides extraordinary flutter tutorials. Do Subscribe! ",
+                    "Your shopping destination with a click of a button",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.grey[700],
