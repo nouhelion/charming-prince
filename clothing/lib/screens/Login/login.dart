@@ -1,6 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sized_box_for_whitespace, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -10,7 +11,6 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        brightness: Brightness.light,
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
           color: Colors.black,),
 
 
-        ),
+        ), systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
