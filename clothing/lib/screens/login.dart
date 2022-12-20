@@ -1,12 +1,23 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginPage extends StatelessWidget {
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+class LoginPage extends StatefulWidget {
+   
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+   final _emailController = TextEditingController();
+   final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -152,7 +163,9 @@ class LoginPage extends StatelessWidget {
   }
 
   Future signIn() async {
-    
+    await _auth.signInWithEmailAndPassword(
+            email: _emailController.text.trim(), 
+            password: _passwordController.text.trim(),);
   }
 }
 
