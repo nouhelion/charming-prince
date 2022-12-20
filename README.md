@@ -1,5 +1,5 @@
 # E-commerce app using Flutter and Firebase
-Flutter app for client's ecommerce bussiness.
+Flutter app for client's ecommerce bussiness for clothing.
 
 ## Getting Started
 
@@ -18,15 +18,6 @@ It is an complete e-commerce mobile app which is designed using flutter. It uses
 - Press run button in Android studio to install the apk
 - The project will now be running in your device.
 
-## Steps to write sample products data in firebase
-- For product images, drop down all the images from **assets/mock_images** folder to the firebase storage without creating any folder structure inside firebase storage.
-- For product data, make following changes in **main.dart** file
-
-```
-initialRoute:'/admin',
-```
-- Hot reload your app. After this, click on button to write product data in firebase cloud firestore.
-
 
 ## Features of this flutter app
 
@@ -40,8 +31,6 @@ initialRoute:'/admin',
   * Products Details view
   * Color picker
   * Size picker (optional)
-  * Share to Messenger, Whatsapp, Wechat, Twitter, E-mail, Copy Link, etc.
-  * Wishlist
 
 - Shopping Cart
   * Add to Cart functionality
@@ -49,14 +38,6 @@ initialRoute:'/admin',
   * Edit Shopping Cart
   * Order History
   * Reorder functionality
-
-- Checkout Experience
-  * Shopping Cart
-  * Shipping Address
-  * Shipping Methods
-  * Payment Methods
-  * Add New Card
-  * Place Order
 
 - Customer Profile
   * Account details
@@ -67,7 +48,6 @@ initialRoute:'/admin',
  - Customer Management
    * Registration with Email & Password
    * Login with E-mail & Password
-   * Google Sign In (Left to achieve)
    * Logout
 
 
