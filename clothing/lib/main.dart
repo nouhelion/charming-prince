@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   // creating the signup button
-                  SizedBox(height: 10),
+                  SizedBox(width: 30),
                   MaterialButton(
                     minWidth: 120,
                     height: 40,
