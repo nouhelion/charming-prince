@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
           return LoginPage();
         }
       }),*/
-      SafeArea(
+          SafeArea(
         child: Container(
           // we will give media query height
           // double.infinity make it big as my parent allows
@@ -65,17 +65,21 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               Container(
-                height: MediaQuery.of(context).size.height / 3,
+                height: MediaQuery.of(context).size.height / 2.5,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage("assets/images/welcome.png"))),
               ),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .center, //Center Row contents horizontally,
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, //Center Row contents vertically,
                 children: <Widget>[
                   // the login button
                   MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
+                    minWidth: 120,
+                    height: 40,
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => LoginPage()));
@@ -83,7 +87,7 @@ class HomePage extends StatelessWidget {
                     // defining the shape
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50)),
+                        borderRadius: BorderRadius.circular(30)),
                     child: Text(
                       "Login",
                       style:
@@ -91,10 +95,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   // creating the signup button
-                  SizedBox(height: 20),
+                  SizedBox(height: 10),
                   MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
+                    minWidth: 120,
+                    height: 40,
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -103,7 +107,7 @@ class HomePage extends StatelessWidget {
                     },
                     color: Colors.indigo,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)),
+                        borderRadius: BorderRadius.circular(30)),
                     child: Text(
                       "Sign up",
                       style: TextStyle(
