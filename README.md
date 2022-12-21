@@ -11,7 +11,7 @@ It is an complete e-commerce mobile app which is designed using flutter. It uses
 
 ## Steps to reproduce the project in your environment
 - Download and setup the flutter SDK
-- Install flutter plugin in your editor(preferably Android Studio).
+- Install flutter plugin in your editor(preferably Vs COde).
 - Create your own firebase project and make sure that package name in firebase app should be same as application id which is in android gradle file.
 - Download google-service.json file and paste inside **/android/app** directory.
 - Run flutter get/ pub get for getting dependencies.
