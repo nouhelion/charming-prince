@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                           right: BorderSide(color: Colors.black),
                         )),
                     child: MaterialButton(
-                      minWidth: double.infinity,
+                      minWidth: 120,
                       height: 60,
                       //when to sign in
                       onPressed: signIn,

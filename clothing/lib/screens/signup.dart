@@ -43,7 +43,7 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text(
                     "Create an account, It's free ",
@@ -54,55 +54,55 @@ class SignupPage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                    labelText: 'E-mail',
-                    labelStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigo),
-                    )),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigo),
-                    )),
-                obscureText: true,
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                    labelText: 'Re-type Password',
-                    labelStyle: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.indigo),
-                    )),
-                obscureText: true,
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              SizedBox(
-                height: 40,
-              ),
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 4.0,
+                  ),
+                  TextField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                        labelText: 'Re-type Password',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 4.0,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
               Container(
@@ -116,7 +116,7 @@ class SignupPage extends StatelessWidget {
                       right: BorderSide(color: Colors.black),
                     )),
                 child: MaterialButton(
-                  minWidth: double.infinity,
+                  minWidth: 120,
                   height: 60,
                   onPressed: () {},
                   color: Colors.indigo,

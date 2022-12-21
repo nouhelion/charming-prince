@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                   // the login button
                   MaterialButton(
                     minWidth: 120,
-                    height: 40,
+                    height: 60,
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => LoginPage()));
@@ -98,7 +98,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(width: 30),
                   MaterialButton(
                     minWidth: 120,
-                    height: 40,
+                    height: 60,
                     onPressed: () {
                       Navigator.push(
                           context,
