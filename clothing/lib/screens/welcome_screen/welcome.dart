@@ -1,5 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:clothing/screens/navigation_screens/cart.dart';
+import 'package:clothing/screens/navigation_screens/home.dart';
+import 'package:clothing/screens/navigation_screens/profil.dart';
+import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -22,18 +26,30 @@ class _WelcomeState extends State<Welcome> {
         GButton(
           icon: Icons.home,
           text: 'Home',
+          onPressed:  () {
+           Home();
+          }
         ),
         GButton(
           icon: Icons.search,
           text: 'Search',
+           onPressed:  () {
+             Search();
+          }
         ),
         GButton(
           icon: Icons.shopping_cart,
           text: 'Cart',
+           onPressed:  () {
+            Cart();
+          }
         ),
         GButton(
           icon: Icons.person,
           text: 'Profile',
+           onPressed:  () {
+            Profil();
+          }
         ),
       ],
     ));
