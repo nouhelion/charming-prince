@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
 
 class SignupPage extends StatelessWidget {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
@@ -55,7 +56,7 @@ class SignupPage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   TextField(
-                    controller: _emailController,
+                    controller: _nameController,
                     decoration: InputDecoration(
                         labelText: 'Full Name',
                         labelStyle: TextStyle(
@@ -103,7 +104,7 @@ class SignupPage extends StatelessWidget {
                   TextField(
                     controller: _passwordController,
                     decoration: InputDecoration(
-                        labelText: 'Re-type Password',
+                        labelText: 'Password',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
