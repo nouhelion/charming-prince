@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element
 
 import 'package:clothing/screens/navigation_screens/cart.dart';
-import 'package:clothing/screens/navigation_screens/home.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class _WelcomeState extends State<Welcome> {
 
       if (index == 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => Welcome()));
       }
       if (index == 1) {
         Navigator.push(

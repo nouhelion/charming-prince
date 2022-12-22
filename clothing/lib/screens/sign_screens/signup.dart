@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
 
@@ -43,7 +44,7 @@ class SignupPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Text(
                     "Create an account, It's free ",
@@ -53,6 +54,21 @@ class SignupPage extends StatelessWidget {
               ),
               Column(
                 children: <Widget>[
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        labelText: 'Full Name',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
@@ -66,7 +82,7 @@ class SignupPage extends StatelessWidget {
                         )),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   TextField(
                     controller: _passwordController,
@@ -82,7 +98,7 @@ class SignupPage extends StatelessWidget {
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 4.0,
+                    height: 2.0,
                   ),
                   TextField(
                     controller: _passwordController,
@@ -98,10 +114,10 @@ class SignupPage extends StatelessWidget {
                     obscureText: true,
                   ),
                   SizedBox(
-                    height: 4.0,
+                    height: 2.0,
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 2,
                   ),
                 ],
               ),
@@ -134,16 +150,32 @@ class SignupPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Already have an account?"),
-                  Text(
-                    " Login",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              RichText(
+                text: TextSpan(
+                  text: "Already have an account?",
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 16,
                   ),
-                ],
-              )
+                  children: [
+                    TextSpan(
+                      text: "  Login",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()));
+                        },
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),

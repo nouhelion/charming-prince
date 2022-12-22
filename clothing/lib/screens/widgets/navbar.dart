@@ -1,9 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_const_constructors
 
 import 'package:clothing/screens/navigation_screens/cart.dart';
-import 'package:clothing/screens/navigation_screens/home.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
+import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
   
@@ -21,7 +21,7 @@ class _navbarState extends State<navbar> {
 
       if (index == 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => Welcome()));
       }
       if (index == 1) {
         Navigator.push(

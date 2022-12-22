@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
-import 'package:clothing/screens/navigation_screens/home.dart';
+
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
+import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -22,7 +23,7 @@ class _CartState extends State<Cart> {
 
       if (index == 0) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => Welcome()));
       }
       if (index == 1) {
         Navigator.push(
