@@ -75,6 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: <Widget>[
                       TextField(
+                        keyboardType: TextInputType.text,
                         controller: _emailController,
                         decoration: InputDecoration(
                             labelText: 'Adresse E-mail',
@@ -90,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       TextField(
+                        keyboardType: TextInputType.text,
                         controller: _passwordController,
                         decoration: InputDecoration(
                             labelText: 'Mot de Passe',

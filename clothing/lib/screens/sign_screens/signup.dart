@@ -2,11 +2,13 @@
 
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class SignupPage extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class SignupPage extends StatefulWidget {
 class _SignupPageState extends State<SignupPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
@@ -73,6 +76,7 @@ class _SignupPageState extends State<SignupPage> {
               Column(
                 children: <Widget>[
                   TextField(
+                    keyboardType: TextInputType.text,
                     controller: _nameController,
                     decoration: InputDecoration(
                         labelText: 'Full Name',
@@ -88,6 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                     height: 5,
                   ),
                   TextField(
+                    keyboardType: TextInputType.text,
                     controller: _emailController,
                     decoration: InputDecoration(
                         labelText: 'E-mail',
@@ -103,6 +108,23 @@ class _SignupPageState extends State<SignupPage> {
                     height: 5,
                   ),
                   TextField(
+                    keyboardType: TextInputType.phone,
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
                     controller: _passwordController,
                     decoration: InputDecoration(
                         labelText: 'Password',
@@ -119,9 +141,9 @@ class _SignupPageState extends State<SignupPage> {
                     height: 2.0,
                   ),
                   TextField(
-                    controller: _passwordController,
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                        labelText: 'Password',
+                        labelText: 'Re-type Password',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
@@ -221,6 +243,14 @@ class _SignupPageState extends State<SignupPage> {
             password: _passwordController.text.trim()))
         .user;
     if (user != null) {
+      // Get a reference to the 'users' collection
+      CollectionReference usersCollection = _firestore.collection('Users');
+
+      // Add a new document to the collection with the user's data
+      await usersCollection.add({
+        'name': _nameController.text.trim(),
+        'email': _emailController.text.trim(),
+      });
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
