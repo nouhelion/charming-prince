@@ -3,8 +3,13 @@
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:clothing/screens/welcome_screen/welcome.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -39,9 +44,31 @@ class _ProfilState extends State<Profil> {
     });
   }
 
+  String id='';
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+
+  Future<void> getCurrentUser() async {
+    // Get a reference to the current user
+    User user = await _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+
+    // Get a reference to the 'users' collection
+    CollectionReference usersCollection = _firestore.collection('Users');
+
+    // Get a reference to the document with the user's data
+    DocumentReference userDocument = usersCollection.doc(uid);
+
+    // Get the data from the document
+    DocumentSnapshot snapshot = await userDocument.get();
+
+    // Print the data to the console
+     //_nameController.text = snapshot.data('name');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,7 +167,6 @@ class _ProfilState extends State<Profil> {
                   child: MaterialButton(
                     minWidth: 120,
                     height: 60,
-                   
                     onPressed: () {},
                     color: Colors.indigo,
                     elevation: 0,
