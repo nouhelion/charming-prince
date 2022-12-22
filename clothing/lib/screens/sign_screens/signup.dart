@@ -174,7 +174,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: MaterialButton(
                   minWidth: 120,
                   height: 60,
-                  //when to sign in
+                  //when to sign up
                   onPressed: signUp,
                   color: Colors.indigo,
                   elevation: 0,
