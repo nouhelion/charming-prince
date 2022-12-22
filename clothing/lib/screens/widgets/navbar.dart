@@ -1,20 +1,19 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_const_constructors
 
+import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/home.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
-class Cart extends StatefulWidget {
-  const Cart({super.key});
-
+  
+class navbar extends StatefulWidget {
   @override
-  State<Cart> createState() => _CartState();
+  State<navbar> createState() => _navbarState();
 }
 
-class _CartState extends State<Cart> {
-  int pageIndex = 2;
+class _navbarState extends State<navbar> {
+  int pageIndex = 0;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -43,7 +42,6 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: GNav(
-        selectedIndex: pageIndex,
         color: Colors.grey,
         activeColor: Colors.indigo,
         gap: 8,

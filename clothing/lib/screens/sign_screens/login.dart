@@ -73,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: <Widget>[
                       TextField(
+
                         controller: _emailController,
                         decoration: InputDecoration(
                             labelText: 'Adresse E-mail',
