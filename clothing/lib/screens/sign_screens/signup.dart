@@ -1,13 +1,30 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, use_build_context_synchronously, avoid_print
 
+import 'package:clothing/screens/welcome_screen/welcome.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
 
-class SignupPage extends StatelessWidget {
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+class SignupPage extends StatefulWidget {
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,7 +152,8 @@ class SignupPage extends StatelessWidget {
                 child: MaterialButton(
                   minWidth: 120,
                   height: 60,
-                  onPressed: () {},
+                  //when to sign in
+                  onPressed: signUp,
                   color: Colors.indigo,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -182,5 +200,33 @@ class SignupPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signUp() async {
+    showDialog(
+      context: context,
+      barrierDismissible:
+          false, // set to false to prevent the user from dismissing the dialog by tapping outside the dialog
+      builder: (context) {
+        return AlertDialog(
+          content: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
+
+    final User? user = (await _auth.createUserWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim()))
+        .user;
+    if (user != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Welcome(),
+        ),
+      );
+    }
   }
 }
