@@ -3,6 +3,7 @@
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
@@ -190,9 +191,6 @@ class _SignupPageState extends State<SignupPage> {
                           borderSide: BorderSide(color: Colors.indigo),
                         )),
                     obscureText: true,
-                  ),
-                  SizedBox(
-                    height: 2.0,
                   ),
                   SizedBox(
                     height: 2,
