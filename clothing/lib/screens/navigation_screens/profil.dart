@@ -6,7 +6,6 @@ import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -53,7 +52,7 @@ class _ProfilState extends State<Profil> {
 
   Future<void> getCurrentUser() async {
     // Get a reference to the current user
-    User user = await _auth.currentUser!;
+    User user = _auth.currentUser!;
 
     // Get the user's unique identifier
     String uid = user.uid;
@@ -65,10 +64,13 @@ class _ProfilState extends State<Profil> {
     DocumentReference userDocument = usersCollection.doc(uid);
 
     // Get the data from the document
-    DocumentSnapshot snapshot = await userDocument.get();
-
-    // Print the data to the console
-    //_nameController.text = snapshot.data('name');
+    userDocument.get().then((snapshot) async {
+      Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>;
+      // Set the data as the initial value of the TextEditingController
+      _nameController.text = data['name'];
+      _emailController.text = data['email'];
+      _phoneController.text = data['phone'];
+    });
   }
 
   Future<void> signOut() async {

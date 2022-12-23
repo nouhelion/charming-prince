@@ -245,11 +245,12 @@ class _SignupPageState extends State<SignupPage> {
     if (user != null) {
       // Get a reference to the 'users' collection
       CollectionReference usersCollection = _firestore.collection('Users');
-
+      //String uid=user.uid;
       // Add a new document to the collection with the user's data
       await usersCollection.add({
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
+        'phone': _phoneController.text.trim(),
       });
       Navigator.pushReplacement(
         context,
