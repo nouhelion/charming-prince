@@ -24,6 +24,7 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _adressController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
 
   @override
   void dispose() {
@@ -100,6 +101,22 @@ class _SignupPageState extends State<SignupPage> {
                     controller: _emailController,
                     decoration: InputDecoration(
                         labelText: 'E-mail',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _birthdayController,
+                    decoration: InputDecoration(
+                        labelText: 'Birthday',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
@@ -287,6 +304,10 @@ class _SignupPageState extends State<SignupPage> {
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
         'phone': _phoneController.text.trim(),
+        'adress': _adressController.text.trim(),
+        'city': _cityController.text.trim(),
+        'codepostal': _codeController.text.trim(),
+        'birthday': _birthdayController.text.trim(),
       });
       Navigator.pushReplacement(
         context,
