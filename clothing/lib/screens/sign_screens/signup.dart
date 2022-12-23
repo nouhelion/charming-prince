@@ -20,6 +20,9 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _adressController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
 
   @override
   void dispose() {
@@ -141,9 +144,44 @@ class _SignupPageState extends State<SignupPage> {
                     height: 2.0,
                   ),
                   TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.text,
+                    controller: _adressController,
                     decoration: InputDecoration(
-                        labelText: 'Re-type Password',
+                        labelText: 'Address',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _codeController,
+                    decoration: InputDecoration(
+                        labelText: 'Postal Code',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _cityController,
+                    decoration: InputDecoration(
+                        labelText: 'City',
                         labelStyle: TextStyle(
                             fontFamily: 'Montserrat',
                             fontWeight: FontWeight.bold,
