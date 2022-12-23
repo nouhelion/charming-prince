@@ -1,10 +1,12 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_build_context_synchronously
 
+import 'package:clothing/main.dart';
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -44,7 +46,7 @@ class _ProfilState extends State<Profil> {
     });
   }
 
-  String id='';
+  String id = '';
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -66,7 +68,17 @@ class _ProfilState extends State<Profil> {
     DocumentSnapshot snapshot = await userDocument.get();
 
     // Print the data to the console
-     //_nameController.text = snapshot.data('name');
+    //_nameController.text = snapshot.data('name');
+  }
+
+  Future<void> signOut() async {
+    // Sign out the user
+    await _auth.signOut();
+    // Route to the login page
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
   }
 
   @override
@@ -83,6 +95,19 @@ class _ProfilState extends State<Profil> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
+                    // Other widgets in the app
+                    Positioned(
+                      top: 16,
+                      right: 16,
+                      child: InkWell(
+                        onTap: () => signOut(),
+                        child: Icon(
+                          Icons.exit_to_app,
+                          size: 32,
+                          color: Colors.indigoAccent,
+                        ),
+                      ),
+                    ),
                     Text(
                       "Your Profile",
                       style: TextStyle(
