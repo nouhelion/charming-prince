@@ -287,7 +287,6 @@ class _SignupPageState extends State<SignupPage> {
         );
       },
     );
-
     final User? user = (await _auth.createUserWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim()))
@@ -297,11 +296,13 @@ class _SignupPageState extends State<SignupPage> {
       CollectionReference usersCollection = _firestore.collection('Users');
       //String uid=user.uid;
       // Add a new document to the collection with the user's data
-      await usersCollection.add({
+      //not working with await
+      await usersCollection.doc(user.uid).set({
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
         'phone': _phoneController.text.trim(),
         'adress': _adressController.text.trim(),
+        'password': _passwordController.text.trim(),
         'city': _cityController.text.trim(),
         'codepostal': _codeController.text.trim(),
         'birthday': _birthdayController.text.trim(),

@@ -45,10 +45,14 @@ class _ProfilState extends State<Profil> {
     });
   }
 
-  String id = '';
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+   final TextEditingController _nameController = TextEditingController();
+   final TextEditingController _emailController = TextEditingController();
+   final TextEditingController _phoneController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+   final TextEditingController _adressController = TextEditingController();
+   final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
+   final TextEditingController _birthdayController = TextEditingController();
 
   Future<void> getCurrentUser() async {
     // Get a reference to the current user
@@ -70,6 +74,12 @@ class _ProfilState extends State<Profil> {
       _nameController.text = data['name'];
       _emailController.text = data['email'];
       _phoneController.text = data['phone'];
+      _passwordController = data['password'];
+      _adressController.text = data['adress'];
+      _cityController.text = data['city'];
+      _codeController.text = data['code'];
+      _birthdayController.text = data['birthday'];
+  
     });
   }
 
@@ -96,7 +106,6 @@ class _ProfilState extends State<Profil> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 40),
-            height: MediaQuery.of(context).size.height - 50,
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -136,57 +145,138 @@ class _ProfilState extends State<Profil> {
                   ],
                 ),
                 Column(
-                  children: <Widget>[
-                    TextField(
-                      keyboardType: TextInputType.text,
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                          labelText: 'Full Name',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.indigo),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.text,
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                          labelText: 'E-mail',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.indigo),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextField(
-                      keyboardType: TextInputType.phone,
-                      controller: _phoneController,
-                      decoration: InputDecoration(
-                          labelText: 'Phone Number',
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.indigo),
-                          )),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                  ],
-                ),
+                children: <Widget>[
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                        labelText: 'Full Name',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        labelText: 'E-mail',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _birthdayController,
+                    decoration: InputDecoration(
+                        labelText: 'Birthday',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.phone,
+                    controller: _phoneController,
+                    decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                    obscureText: true,
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _adressController,
+                    decoration: InputDecoration(
+                        labelText: 'Address',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _codeController,
+                    decoration: InputDecoration(
+                        labelText: 'Postal Code',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 2.0,
+                  ),
+                  TextField(
+                    keyboardType: TextInputType.text,
+                    controller: _cityController,
+                    decoration: InputDecoration(
+                        labelText: 'City',
+                        labelStyle: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.indigo),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 2,
+                  ),
+                ],
+              ),
                 Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
                   decoration: BoxDecoration(
