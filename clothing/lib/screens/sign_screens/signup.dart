@@ -55,7 +55,7 @@ class _SignupPageState extends State<SignupPage> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height - 50,
+          height: MediaQuery.of(context).size.height,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -173,7 +173,6 @@ class _SignupPageState extends State<SignupPage> {
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.indigo),
                         )),
-                    obscureText: true,
                   ),
                   SizedBox(
                     height: 2.0,
@@ -190,7 +189,6 @@ class _SignupPageState extends State<SignupPage> {
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.indigo),
                         )),
-                    obscureText: true,
                   ),
                   SizedBox(
                     height: 2.0,
@@ -207,7 +205,6 @@ class _SignupPageState extends State<SignupPage> {
                         focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.indigo),
                         )),
-                    obscureText: true,
                   ),
                   SizedBox(
                     height: 2,
