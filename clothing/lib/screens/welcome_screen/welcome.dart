@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names
 
-
 import 'package:clothing/screens/clothing/details.dart';
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
@@ -67,9 +66,24 @@ class _WelcomeState extends State<Welcome> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   return Card(
-                    child: ListTile(
-                      title: Text(data['name']),
-                      subtitle: Text(data['urlpic']),
+                    clipBehavior: Clip.hardEdge,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.outline,
+                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                    ),
+                    child: InkWell(
+                      child: ListTile(
+                        title: Text(data['name']),
+                        subtitle: Text(data['urlpic']),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.indigoAccent,
+                          size: 15,
+                        ),
+                      ),
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Details()));
