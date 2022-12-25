@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 User user = _auth.currentUser!;
 
-    // Get the user's unique identifier
-    String uid = user.uid;
-    CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection("Cart");
+// Get the user's unique identifier
+String uid = user.uid;
+CollectionReference _collectionRef =
+    FirebaseFirestore.instance.collection("Cart");
 
 Widget fetchData(String collectionName) {
   return StreamBuilder(
@@ -32,8 +31,8 @@ Widget fetchData(String collectionName) {
                 leading: Text(documentSnapshot['name']),
                 title: Text(
                   "\$ ${documentSnapshot['price']}",
-                  style:
-                      const TextStyle(fontWeight: FontWeight.bold, color: Colors.indigoAccent),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.indigoAccent),
                 ),
                 trailing: GestureDetector(
                   child: const CircleAvatar(
