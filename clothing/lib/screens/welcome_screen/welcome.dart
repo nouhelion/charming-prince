@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names
 
-import 'package:clothing/screens/clothing/details.dart';
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
@@ -86,7 +85,7 @@ class _WelcomeState extends State<Welcome> {
                       ),
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Details()));
+                            MaterialPageRoute(builder: (context) => DetailsPage(data: data)));
                       },
                     ),
                   );
@@ -94,6 +93,95 @@ class _WelcomeState extends State<Welcome> {
               );
             },
           ),
+        ),
+      ),
+      bottomNavigationBar: GNav(
+        color: Colors.grey,
+        activeColor: Colors.indigo,
+        gap: 8,
+        tabs: [
+          GButton(
+              icon: Icons.home,
+              text: 'Home',
+              onPressed: () {
+                _onItemTapped(0);
+              }),
+          GButton(
+              icon: Icons.search,
+              text: 'Search',
+              onPressed: () {
+                _onItemTapped(1);
+              }),
+          GButton(
+            icon: Icons.shopping_cart,
+            text: 'Cart',
+            onPressed: () {
+              _onItemTapped(2);
+            },
+          ),
+          GButton(
+            icon: Icons.person,
+            text: 'Profile',
+            onPressed: () {
+              _onItemTapped(3);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class DetailsPage extends StatefulWidget {
+  final Map<String, dynamic> data;
+
+  const DetailsPage({Key? key, required this.data}) : super(key: key);
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+   int pageIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      pageIndex = index;
+
+      if (index == 0) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Welcome()));
+      }
+      if (index == 1) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Search()));
+      }
+      if (index == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Cart()));
+      }
+      if (index == 3) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Profil()));
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo[300],
+        title: Text(widget.data['name']),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text(widget.data['name']),
+             Text(widget.data['urlpic']),
+            // Add more widgets to display the data
+          ],
         ),
       ),
       bottomNavigationBar: GNav(
