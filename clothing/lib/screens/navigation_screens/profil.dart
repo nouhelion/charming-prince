@@ -20,6 +20,14 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _adressController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
   int pageIndex = 3;
 
   void _onItemTapped(int index) {
@@ -45,15 +53,6 @@ class _ProfilState extends State<Profil> {
     });
   }
 
-   final TextEditingController _nameController = TextEditingController();
-   final TextEditingController _emailController = TextEditingController();
-   final TextEditingController _phoneController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-   final TextEditingController _adressController = TextEditingController();
-   final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _codeController = TextEditingController();
-   final TextEditingController _birthdayController = TextEditingController();
-
   Future<void> getCurrentUser() async {
     // Get a reference to the current user
     User user = _auth.currentUser!;
@@ -74,12 +73,37 @@ class _ProfilState extends State<Profil> {
       _nameController.text = data['name'];
       _emailController.text = data['email'];
       _phoneController.text = data['phone'];
-      _passwordController = data['password'];
+      _passwordController.text = data['password'];
       _adressController.text = data['adress'];
       _cityController.text = data['city'];
-      _codeController.text = data['code'];
+      _codeController.text = data['postalcode'];
       _birthdayController.text = data['birthday'];
-  
+    });
+  }
+
+  Future<void> updateUser() async {
+    // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
+
+    // Get a reference to the 'users' collection
+    CollectionReference usersCollection = _firestore.collection('Users');
+
+    // Get a reference to the document with the user's data
+    DocumentReference userDocument = usersCollection.doc(uid);
+
+    // Modify the data in the document
+    await userDocument.set({
+      'name': _nameController.text.trim(),
+      'email': _emailController.text.trim(),
+      'phone': _phoneController.text.trim(),
+      'adress': _adressController.text.trim(),
+      'password': _passwordController.text.trim(),
+      'city': _cityController.text.trim(),
+      'postalcode': _codeController.text.trim(),
+      'birthday': _birthdayController.text.trim(),
     });
   }
 
@@ -145,138 +169,138 @@ class _ProfilState extends State<Profil> {
                   ],
                 ),
                 Column(
-                children: <Widget>[
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _nameController,
-                    decoration: InputDecoration(
-                        labelText: 'Full Name',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _birthdayController,
-                    decoration: InputDecoration(
-                        labelText: 'Birthday',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.phone,
-                    controller: _phoneController,
-                    decoration: InputDecoration(
-                        labelText: 'Phone Number',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                    obscureText: true,
-                  ),
-                  SizedBox(
-                    height: 2.0,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _adressController,
-                    decoration: InputDecoration(
-                        labelText: 'Address',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 2.0,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _codeController,
-                    decoration: InputDecoration(
-                        labelText: 'Postal Code',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 2.0,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    controller: _cityController,
-                    decoration: InputDecoration(
-                        labelText: 'City',
-                        labelStyle: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 2,
-                  ),
-                ],
-              ),
+                  children: <Widget>[
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _nameController,
+                      decoration: InputDecoration(
+                          labelText: 'Full Name',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _birthdayController,
+                      decoration: InputDecoration(
+                          labelText: 'Birthday',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.phone,
+                      controller: _phoneController,
+                      decoration: InputDecoration(
+                          labelText: 'Phone Number',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _passwordController,
+                      decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                      obscureText: true,
+                    ),
+                    SizedBox(
+                      height: 2.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _adressController,
+                      decoration: InputDecoration(
+                          labelText: 'Address',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 2.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _codeController,
+                      decoration: InputDecoration(
+                          labelText: 'Postal Code',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 2.0,
+                    ),
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      controller: _cityController,
+                      decoration: InputDecoration(
+                          labelText: 'City',
+                          labelStyle: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.indigo),
+                          )),
+                    ),
+                    SizedBox(
+                      height: 2,
+                    ),
+                  ],
+                ),
                 Container(
                   padding: EdgeInsets.only(top: 3, left: 3),
                   decoration: BoxDecoration(
@@ -290,7 +314,7 @@ class _ProfilState extends State<Profil> {
                   child: MaterialButton(
                     minWidth: 120,
                     height: 60,
-                    onPressed: () {},
+                    onPressed:  updateUser,
                     color: Colors.indigo,
                     elevation: 0,
                     shape: RoundedRectangleBorder(

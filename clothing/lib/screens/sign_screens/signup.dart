@@ -3,7 +3,6 @@
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:clothing/screens/sign_screens/login.dart';
@@ -304,7 +303,7 @@ class _SignupPageState extends State<SignupPage> {
         'adress': _adressController.text.trim(),
         'password': _passwordController.text.trim(),
         'city': _cityController.text.trim(),
-        'codepostal': _codeController.text.trim(),
+        'postalcode': _codeController.text.trim(),
         'birthday': _birthdayController.text.trim(),
       });
       Navigator.pushReplacement(
