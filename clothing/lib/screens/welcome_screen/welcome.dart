@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names
 
-//import 'package:clothing/screens/clothing/details.dart';
+
+import 'package:clothing/screens/clothing/details.dart';
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
@@ -48,28 +49,38 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _categoriesStream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something went wrong');
-          }
+      body: SizedBox(
+        child: Container(
+          child: StreamBuilder<QuerySnapshot>(
+            stream: _categoriesStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
-          }
-
-          return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-              return ListTile(
-                title: Text(data['name']),
-                subtitle: Text(data['urlpic']),
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              }
+              return ListView(
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  return Card(
+                    child: ListTile(
+                      title: Text(data['name']),
+                      subtitle: Text(data['urlpic']),
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Details()));
+                      },
+                    ),
+                  );
+                }).toList(),
               );
-            }).toList(),
-          );
-        },
+            },
+          ),
+        ),
       ),
       bottomNavigationBar: GNav(
         color: Colors.grey,
