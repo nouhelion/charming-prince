@@ -30,7 +30,7 @@ Widget fetchData(String collectionName) {
               child: ListTile(
                 leading: Text(documentSnapshot['name']),
                 title: Text(
-                  "\$ ${documentSnapshot['price']}",
+                  documentSnapshot['price'],
                   style: const TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.indigoAccent),
                 ),
