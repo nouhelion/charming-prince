@@ -45,7 +45,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
        body: SafeArea(
-        child: fetchData("Cart"),
+        child: cartData("Cart"),
       ),
       bottomNavigationBar: GNav(
         selectedIndex: pageIndex,

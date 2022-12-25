@@ -10,7 +10,7 @@ String uid = user.uid;
 CollectionReference _collectionRef =
     FirebaseFirestore.instance.collection("Cart");
 
-Widget fetchData(String collectionName) {
+Widget cartData(String collectionName) {
   return StreamBuilder(
     stream: _collectionRef.doc(uid).collection("items").snapshots(),
     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
