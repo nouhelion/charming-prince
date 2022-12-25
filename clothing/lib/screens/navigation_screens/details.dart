@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, camel_case_types, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
@@ -6,15 +6,16 @@ import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-  
-class navbar extends StatefulWidget {
+
+class Details extends StatefulWidget {
+  const Details({super.key, required Map<String, dynamic> data});
+
   @override
-  State<navbar> createState() => _navbarState();
+  State<Details> createState() => _DetailsState();
 }
 
-class _navbarState extends State<navbar> {
-  int pageIndex = 0;
-
+class _DetailsState extends State<Details> {
+   int pageIndex = 2;
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
@@ -37,11 +38,17 @@ class _navbarState extends State<navbar> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: GNav(
+   return Scaffold(
+     appBar: AppBar(
+        backgroundColor: Colors.indigo[300],
+        title: Text("Details"),
+      ),
+     body: Container(
+       child: Text("Details"),
+     ),
+     bottomNavigationBar: GNav(
         color: Colors.grey,
         activeColor: Colors.indigo,
         gap: 8,
@@ -74,6 +81,6 @@ class _navbarState extends State<navbar> {
           ),
         ],
       ),
-    );
+   );
   }
 }

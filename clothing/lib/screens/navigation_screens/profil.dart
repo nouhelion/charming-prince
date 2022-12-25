@@ -93,7 +93,8 @@ class _ProfilState extends State<Profil> {
 
     // Get a reference to the document with the user's data
     DocumentReference userDocument = usersCollection.doc(uid);
-
+    await user.updatePassword(_passwordController.text);
+    await user.updateEmail(_emailController.text);
     // Modify the data in the document
     await userDocument.set({
       'name': _nameController.text.trim(),
@@ -297,7 +298,7 @@ class _ProfilState extends State<Profil> {
                           )),
                     ),
                     SizedBox(
-                      height: 2,
+                      height: 25,
                     ),
                   ],
                 ),
