@@ -1,27 +1,22 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
-//import 'package:clothing/screens/clothing/details.dart';
 import 'package:clothing/screens/navigation_screens/cart.dart';
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:clothing/screens/welcome_screen/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-// Initialize a Firestore instance
-final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class Details extends StatefulWidget {
+  const Details({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<Details> createState() => _DetailsState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class _DetailsState extends State<Details> {
   int pageIndex = 0;
-  final Stream<QuerySnapshot> _categoriesStream =
-      FirebaseFirestore.instance.collection('Categories').snapshots();
+  
   void _onItemTapped(int index) {
     setState(() {
       pageIndex = index;
@@ -48,28 +43,10 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _categoriesStream,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Something went wrong');
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text("Loading");
-          }
-
-          return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-              return ListTile(
-                title: Text(data['name']),
-                subtitle: Text(data['urlpic']),
-              );
-            }).toList(),
-          );
-        },
+      body: Container(
+        child: Center(
+          child: Text('Details'),
+        ),
       ),
       bottomNavigationBar: GNav(
         color: Colors.grey,
@@ -107,3 +84,4 @@ class _WelcomeState extends State<Welcome> {
     );
   }
 }
+
