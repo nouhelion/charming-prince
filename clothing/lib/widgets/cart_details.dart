@@ -35,8 +35,9 @@ Widget cartData(String collectionName) {
                       fontWeight: FontWeight.bold, color: Colors.indigoAccent),
                 ),
                 trailing: GestureDetector(
-                  child: const CircleAvatar(
-                    child: Icon(Icons.remove_circle),
+                  child: Icon(
+                    Icons.delete,
+                    color: Colors.red[300],
                   ),
                   onTap: () {
                     FirebaseFirestore.instance

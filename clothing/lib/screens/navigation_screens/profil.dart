@@ -146,7 +146,7 @@ class _ProfilState extends State<Profil> {
                         child: Icon(
                           Icons.exit_to_app,
                           size: 32,
-                          color: Colors.indigoAccent,
+                          color: Colors.red[300]
                         ),
                       ),
                     ),
