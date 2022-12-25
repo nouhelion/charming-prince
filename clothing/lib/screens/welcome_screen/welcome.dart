@@ -1,15 +1,17 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_element, non_constant_identifier_names, no_leading_underscores_for_local_identifiers, avoid_print
 
 import 'package:clothing/screens/navigation_screens/cart.dart';
 
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 // Initialize a Firestore instance
+final FirebaseAuth _auth = FirebaseAuth.instance;
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final Stream<QuerySnapshot> _categoriesStream =
     FirebaseFirestore.instance.collection('Categories').snapshots();
@@ -1022,6 +1024,18 @@ class _DetailsProductState extends State<DetailsProduct> {
     });
   }
 
+  Future addToCart() async {
+    var currentUser = _auth.currentUser;
+    CollectionReference _collectionRef =
+        FirebaseFirestore.instance.collection("Cart");
+    return _collectionRef.doc(currentUser!.uid).collection("items").doc().set({
+      "titre": widget.data["name"],
+      "price": widget.data["price"],
+      "marque": widget.data["marque"],
+      "image": widget.data["urlpic"],
+    }).then((value) => print("Added to cart"));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1034,12 +1048,13 @@ class _DetailsProductState extends State<DetailsProduct> {
           child: ListView(
             children: <Widget>[
               InkWell(
+                onTap: addToCart,
                 child: Image(
-                  width: 100,
-                  height: 100,
-                  image: NetworkImage(
-                (widget.data['urlpic']),
-              )),
+                    width: 100,
+                    height: 100,
+                    image: NetworkImage(
+                      (widget.data['urlpic']),
+                    )),
               ),
               Center(
                 child: Column(
