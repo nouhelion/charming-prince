@@ -4,6 +4,7 @@
 import 'package:clothing/screens/navigation_screens/profil.dart';
 import 'package:clothing/screens/navigation_screens/search.dart';
 import 'package:clothing/screens/welcome_screen/welcome.dart';
+import 'package:clothing/widgets/cart_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -43,6 +44,9 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       body: SafeArea(
+        child: fetchData("Cart"),
+      ),
       bottomNavigationBar: GNav(
         selectedIndex: pageIndex,
         color: Colors.grey,

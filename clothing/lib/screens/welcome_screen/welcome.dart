@@ -1025,13 +1025,17 @@ class _DetailsProductState extends State<DetailsProduct> {
   }
 
   Future addToCart() async {
-    var currentUser = _auth.currentUser;
+   // Get a reference to the current user
+    User user = _auth.currentUser!;
+
+    // Get the user's unique identifier
+    String uid = user.uid;
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("Cart");
-    return _collectionRef.doc(currentUser!.uid).collection("items").doc().set({
+    return _collectionRef.doc(uid).collection("items").doc().set({
       "titre": widget.data["name"],
       "price": widget.data["price"],
-      "marque": widget.data["marque"],
+      "brand": widget.data["brand"],
       "image": widget.data["urlpic"],
     }).then((value) => print("Added to cart"));
   }
