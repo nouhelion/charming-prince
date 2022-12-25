@@ -137,19 +137,6 @@ class _ProfilState extends State<Profil> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    // Other widgets in the app
-                    Positioned(
-                      top: 16,
-                      right: 16,
-                      child: InkWell(
-                        onTap: () => signOut(),
-                        child: Icon(
-                          Icons.exit_to_app,
-                          size: 32,
-                          color: Colors.red[300]
-                        ),
-                      ),
-                    ),
                     Text(
                       "Your Profile",
                       style: TextStyle(
@@ -168,6 +155,13 @@ class _ProfilState extends State<Profil> {
                       ),
                     ),
                   ],
+                ),
+                Positioned(
+                  child: InkWell(
+                    onTap: () => signOut(),
+                    child: Icon(Icons.exit_to_app,
+                        size: 32, color: Colors.red[300]),
+                  ),
                 ),
                 Column(
                   children: <Widget>[
@@ -315,7 +309,7 @@ class _ProfilState extends State<Profil> {
                   child: MaterialButton(
                     minWidth: 120,
                     height: 60,
-                    onPressed:  updateUser,
+                    onPressed: updateUser,
                     color: Colors.indigo,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
