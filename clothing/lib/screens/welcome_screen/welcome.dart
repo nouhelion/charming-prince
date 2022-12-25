@@ -1033,7 +1033,7 @@ class _DetailsProductState extends State<DetailsProduct> {
     CollectionReference _collectionRef =
         FirebaseFirestore.instance.collection("Cart");
     return _collectionRef.doc(uid).collection("items").doc().set({
-      "titre": widget.data["name"],
+      "name": widget.data["name"],
       "price": widget.data["price"],
       "brand": widget.data["brand"],
       "image": widget.data["urlpic"],

@@ -39,12 +39,12 @@ Widget fetchData(String collectionName) {
                     child: Icon(Icons.remove_circle),
                   ),
                   onTap: () {
-                    /*FirebaseFirestore.instance
+                    FirebaseFirestore.instance
                         .collection(collectionName)
                         .doc(FirebaseAuth.instance.currentUser!.uid)
                         .collection("items")
                         .doc(documentSnapshot.id)
-                        .delete();*/
+                        .delete();
                   },
                 ),
               ),
