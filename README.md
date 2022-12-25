@@ -36,14 +36,10 @@ It is an complete e-commerce mobile app which is designed using flutter. It uses
   * Add to Cart functionality
   * Remove from Cart
   * Edit Shopping Cart
-  * Order History
-  * Reorder functionality
 
 - Customer Profile
   * Account details
   * Edit Profile Details
-  * Setting
-  * Contact us
 
  - Customer Management
    * Registration with Email & Password
